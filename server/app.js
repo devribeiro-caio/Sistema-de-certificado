@@ -7,6 +7,8 @@ const apiRoutes = require('./routes/apiRoutes');
 const { connectDatabase } = require('./config/database');
 const { seedDatabase } = require('./config/seed');
 const { errorHandler } = require('./middlewares/errorHandler');
+const path = require('path');
+const distPath = path.join(__dirname, '..', 'dist');
 
 const app = express();
 const port = Number(process.env.PORT || 3333);
@@ -16,6 +18,14 @@ app.use(express.json({ limit: '1mb' }));
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected' }));
 app.use('/api', apiRoutes);
 app.use(errorHandler);
+
+app.use(express.static(distPath));
+
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) return next();
+
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
 async function startServer() {
   try {
