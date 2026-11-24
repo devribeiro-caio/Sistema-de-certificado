@@ -5,7 +5,9 @@ import './styles.css';
 import formisLogoBlue from './assets/formis-logo-blue.png';
 import instrumentKitBlue from './assets/instrument-kit-blue.png';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:3333/api';
+const API = import.meta.env.DEV
+  ? (import.meta.env.VITE_API_URL || 'http://localhost:3333/api')
+  : '/api';
 
 async function api(path, options = {}) {
   const response = await fetch(`${API}${path}`, {
