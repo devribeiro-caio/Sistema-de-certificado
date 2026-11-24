@@ -1,0 +1,33 @@
+{
+  "name": "formis-certificados",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "nodemon server/app.js",
+    "dev:web": "vite --host 0.0.0.0",
+    "preview": "node server/static.js",
+    "start": "node server/app.js",
+    "build": "vite build",
+    "check": "node --check server/app.js"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.468.0",
+    "mongoose": "^8.13.2",
+    "pdfkit": "^0.16.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "vite": "^6.2.4"
+  }
+}

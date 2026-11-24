@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+release/
+win-unpacked/
+
+.env
+.env.*
+!.env.example
+
+*.log
+tmp/
